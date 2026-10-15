@@ -1,0 +1,31 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  install:
+    name: brew install (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v7
+      - name: Set up Homebrew
+        if: runner.os == 'Linux'
+        run: echo "/home/linuxbrew/.linuxbrew/bin" >> "$GITHUB_PATH"
+      - name: Install, test and audit
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: '1'
+          HOMEBREW_NO_INSTALL_FROM_API: '1'
+        run: |
+          brew update
+          brew tap fsmutimeer/migrax "$GITHUB_WORKSPACE"
+          brew install fsmutimeer/migrax/migrax
+          brew test fsmutimeer/migrax/migrax
+          brew audit --strict fsmutimeer/migrax/migrax
+          migrax version
