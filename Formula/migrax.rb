@@ -1,8 +1,8 @@
 class Migrax < Formula
   desc "Database migrations generated from your JPA entities"
   homepage "https://migrax.org/"
-  url "https://github.com/fsmutimeer/migrax/releases/download/v0.10.0/migrax-0.10.0.zip"
-  sha256 "40ae551381c9ea1ac10a5a7c3fd725a1969e48136e1fa4c37aedef393a7ffd1d"
+  url "https://github.com/fsmutimeer/migrax/releases/download/v0.11.0/migrax-0.11.0.zip"
+  sha256 "89c46c565644120a7c32b75ece9f3367baf8c719a2aa273bcddd75483fb36f60"
   license "MIT"
 
   livecheck do
